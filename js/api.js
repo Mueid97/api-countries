@@ -25,5 +25,22 @@ const displayContries = contries =>{
          countryContainer.appendChild(div);
     }
 };
-
+const loadDatails = name => {
+    const url = `https://restcountries.com/v3.1/name/${name}`;
+    fetch(url)
+    .then(res => res.json())
+    .then(data => loadDatailsCountries(data[0]));
+  //   console.log(url);
+  };
+  
+  const loadDatailsCountries = country => {
+      console.log(country);
+     const countryDetails = document.getElementById('country-details');
+     countryDetails.innerHTML = `
+     <h4>${country.name.common}</h4>
+      <p>population: ${country.population} </p>
+      <img width= "200px" src="${country.flags.svg}">
+     `
+  }
+  
 
